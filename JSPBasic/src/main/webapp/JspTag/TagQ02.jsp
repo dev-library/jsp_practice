@@ -28,6 +28,7 @@
 	<p>
 		<% for(int i=1; i<=9; i++) { %>
 			 <%= num %> X <%= i %> = <%= num * i %><br>
+			 <% out.println(num + " X " + i + " = " + (num * i) + "<br/>"); %>
 		<% } %>
 	</p>
 </body>

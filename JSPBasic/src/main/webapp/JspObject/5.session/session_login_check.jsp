@@ -7,9 +7,9 @@
 	String id = request.getParameter("id");
 	String pw = request.getParameter("pw");
 	String nickName = request.getParameter("nickname");
-	System.out.println(pw);
-	
+	 
 	String loginCheck = (String)session.getAttribute("session_id");
+	System.out.println("로그인 체크 : " + loginCheck);
 	if(loginCheck != null){
 		response.sendRedirect("session_welcome.jsp");
 	}

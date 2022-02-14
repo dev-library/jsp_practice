@@ -42,8 +42,8 @@ public class JDBCInsert {
 					uId + "', '" + uPw + "', '" + uEmail + "')");
 			System.out.println("------------");
 			// 쿼리문 콘솔 출력 끝
-			stmt.executeUpdate("INSERT INTO userinfo VALUES('" + uName + "', '" +
-					uId + "', '" + uPw + "', '" + uEmail + "')");
+			//stmt.executeUpdate("INSERT INTO userinfo VALUES('" + uName + "', '" +
+			//		uId + "', '" + uPw + "', '" + uEmail + "')");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -25,7 +25,7 @@
 		Connection con = DriverManager.getConnection(dbUrl, dbId, dbPw);
 		
 		// 2. 쿼리문(사용자가 입력해준 fId 조회하기) 선언 및 PreparedStatement 객체 생성
-		String sql = "SELECT * FROM userinfo WHERE uid=?";//
+		//String sql = "SELECT * FROM userinfo WHERE uid=?";
 		PreparedStatement pstmt = con.prepareStatement(sql);
 		// SELECT * FROM userinfo WHERE uid=?
 		// -> SELECT * FROM userinfo WHERE uid="javajsp" 로 바뀌는 이유는?

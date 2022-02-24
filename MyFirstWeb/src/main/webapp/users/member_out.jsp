@@ -1,3 +1,4 @@
+<%@page import="kr.co.ict.UserDAO"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="java.sql.DriverManager"%>
@@ -14,7 +15,7 @@
 	// 폼에서 데이터를 가져오는 경우(request.getParameter())
 	// 세션에서 가져오는 경우(session.getAttribute())
 	String sId = (String)session.getAttribute("session_id");
-
+	/*
 	// 1. DB연결용 변수선언
 	String dbType = "com.mysql.cj.jdbc.Driver";
 	String dbUrl = "jdbc:mysql://localhost:3306/jdbcprac1";
@@ -44,6 +45,12 @@
 		session.invalidate();
 		//response.sendRedirect("login_form.jsp");// 로그인창으로 돌려보내기
 	}
+	*/
+	// 삭제로직 구현
+	UserDAO dao = new UserDAO();
+	dao.deleteUser(sId);
+	// 삭제가 성공했건 실패했건 회원 탈퇴에 접근한 자체로 세션 파기
+	session.invalidate();
 %>    
 
 <!DOCTYPE html>

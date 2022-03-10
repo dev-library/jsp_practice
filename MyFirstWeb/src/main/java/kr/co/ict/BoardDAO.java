@@ -171,6 +171,39 @@ public class BoardDAO {
 		}
 		return board;	
 	}
+	
+	// deleteBoard 메서드를 만들어서 삭제처리가 되게 만들어주시고
+	// 서블릿에서 해당 메서드를 호출해 실제로 삭제버튼을 누르면 DB에서 해당 번호 글이 삭제되게 해주세요.
+	// 비 SELECT 구문이므로 리턴자료형 void
+	// DELETE FROM boardTbl WHERE board_num=?
+	public void deleteBoard(int boardNum) {
+		// DB 연결구문을 작성해서 보내주세요.
+		// try블럭 진입 전 Connection, PreparedStatement 선언
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			// Connection, PreparedStatement, ResultSet을 선언합니다.
+			con = ds.getConnection();
+
+			String sql = "DELETE FROM boardTbl WHERE board_num=?";
+			pstmt = con.prepareStatement(sql);
+			// 실행 전 상단 쿼리문 ? 채워넣기
+			pstmt.setInt(1, boardNum);
+
+			// 실행하기
+			pstmt.executeUpdate();
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				con.close();
+				pstmt.close();
+			} catch(SQLException se) {
+				se.printStackTrace();
+			}
+		}	
+	}
+
 }
 
 

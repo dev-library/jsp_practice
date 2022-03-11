@@ -201,8 +201,40 @@ public class BoardDAO {
 			} catch(SQLException se) {
 				se.printStackTrace();
 			}
+		}
+	}
+	
+	// update도 select가 아니므로 void리턴 자료형을 가집니다.
+	public void boardUpdate(String title, String content, int bNum) {
+		// DB 연결구문을 작성해서 보내주세요.
+		// try블럭 진입 전 Connection, PreparedStatement 선언
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			// Connection, PreparedStatement, ResultSet을 선언합니다.
+			con = ds.getConnection();
+
+			String sql = "UPDATE boardTbl SET title=?, content=?, mdate=now() WHERE board_num=?";
+			pstmt = con.prepareStatement(sql);
+			// 실행 전 상단 쿼리문 ? 채워넣기
+			pstmt.setString(1, title);
+			pstmt.setString(2, content);
+			pstmt.setInt(3, bNum);
+
+			// 실행하기
+			pstmt.executeUpdate();
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				con.close();
+				pstmt.close();
+			} catch(SQLException se) {
+				se.printStackTrace();
+			}
 		}	
 	}
+	
 
 }
 

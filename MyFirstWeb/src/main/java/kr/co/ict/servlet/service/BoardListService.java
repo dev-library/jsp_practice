@@ -1,7 +1,9 @@
 package kr.co.ict.servlet.service;
 
+import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -14,6 +16,7 @@ public class BoardListService implements IBoardService {
 	// BoardListServlet에서 바인딩까지 복사해오면 됩니다.
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
+
 		// 1. 접속시 BoardDAO생성
 		BoardDAO dao = BoardDAO.getInstance();
 		// 2. BoardDAO의 getAllBoardList() 호출해 전체 게시글 정보 받아오기

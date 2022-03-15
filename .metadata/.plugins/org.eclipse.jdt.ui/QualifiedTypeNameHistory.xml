@@ -13,4 +13,11 @@
     <fullyQualifiedTypeName name="kr.co.ict.BoardDAO"/>
     <fullyQualifiedTypeName name="kr.co.ict.BoardVO"/>
     <fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
+    <fullyQualifiedTypeName name="javax.servlet.ServletException"/>
+    <fullyQualifiedTypeName name="java.io.IOException"/>
+    <fullyQualifiedTypeName name="kr.co.ict.servlet.service.BoardInsertService"/>
+    <fullyQualifiedTypeName name="kr.co.ict.servlet.service.BoardDeleteService"/>
+    <fullyQualifiedTypeName name="kr.co.ict.servlet.service.IBoardService"/>
+    <fullyQualifiedTypeName name="kr.co.ict.servlet.service.BoardUpdateFormService"/>
+    <fullyQualifiedTypeName name="kr.co.ict.servlet.service.BoardUpdateService"/>
 </qualifiedTypeNameHistroy>

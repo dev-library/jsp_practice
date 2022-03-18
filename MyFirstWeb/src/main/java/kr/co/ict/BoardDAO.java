@@ -50,7 +50,8 @@ public class BoardDAO {
 	// 3-2. 쿼리문을 boardtbl 테이블에서 데이터를 가져오도록 수정합니다.
 	
 	// 3-3. while문 내부에서 BoardVO 세팅이 가능하도록 rs에서 데이터 가져오는 부분을 수정합니다.
-	public List<BoardVO> getAllBoardList(){
+	// 페이징 처리를 위해 페이지 번호를 추가로 입력받습니다.
+	public List<BoardVO> getAllBoardList(int pageNum){
 		// try블럭 진입 전 Connection, PreparedStatement, ResultSet 선언
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -60,10 +61,12 @@ public class BoardDAO {
 		try {
 			// Connection, PreparedStatement, ResultSet을 선언합니다.
 			con = ds.getConnection();
+			int limitNum = ((pageNum-1) * 10);
 			
 			// SELECT * FROM userinfo 실행 및 ResultSet에 저장
-			String sql = "SELECT * FROM boardtbl ORDER BY board_num DESC";
+			String sql = "SELECT * FROM boardtbl ORDER BY board_num DESC limit ?, 10";
 			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, limitNum);
 			
 			rs = pstmt.executeQuery();
 
@@ -138,7 +141,7 @@ public class BoardDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		BoardVO board = null;
-		upHit(board_num);
+		//upHit(board_num);// 조회수 올리는 로직을 실행한 다음 글정보 불러오게 처리
 		try {
 			con = ds.getConnection();
 			String sql = "SELECT * FROM boardTbl WHERE board_num = ?";
@@ -173,6 +176,7 @@ public class BoardDAO {
 		}
 		return board;	
 	}
+
 	
 	// deleteBoard 메서드를 만들어서 삭제처리가 되게 만들어주시고
 	// 서블릿에서 해당 메서드를 호출해 실제로 삭제버튼을 누르면 DB에서 해당 번호 글이 삭제되게 해주세요.
@@ -239,12 +243,27 @@ public class BoardDAO {
 	
 	// 서비스가 아닌 getBoardDetail 실행시 자동으로 같이 실행되도록 처리하겠습니다.
 	// 글 제목을 클릭할때마다 조회수를 상승시키는 메서드
-	private void upHit(int bId) {
-		
+	public void upHit(int bId) {
+		// update문에 맞는 접속로직을 작성해주세요(try~catch, connection, pstmt 생성 등 까지만 해주세요)
 		String sql = "UPDATE boardTbl SET hit = (hit +1) WHERE board_num=?"; 
+		Connection con = null;
+		PreparedStatement pstmt = null;
 		
-		System.out.println("현재 조회된 글 번호 : " + bId);
-		
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, bId);
+			pstmt.executeUpdate();
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				con.close();
+				pstmt.close();
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 	
 	

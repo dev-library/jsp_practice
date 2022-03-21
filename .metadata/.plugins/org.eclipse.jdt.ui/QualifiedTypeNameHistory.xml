@@ -21,4 +21,5 @@
     <fullyQualifiedTypeName name="kr.co.ict.servlet.service.BoardUpdateFormService"/>
     <fullyQualifiedTypeName name="kr.co.ict.servlet.service.BoardUpdateService"/>
     <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
+    <fullyQualifiedTypeName name="kr.co.ict.BoardDTO"/>
 </qualifiedTypeNameHistroy>

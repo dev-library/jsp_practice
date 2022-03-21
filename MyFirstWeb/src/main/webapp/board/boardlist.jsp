@@ -33,6 +33,11 @@
 			</c:forEach>
 		</tbody>
 	</table>
+	
+	${dto}
+	
+	
+	
 	<c:if test="${not empty sId}">
 		<a href="http://localhost:8181/MyFirstWeb/insertForm.do"><button>글쓰기</button></a>
 	</c:if>
